@@ -1,0 +1,31 @@
+<html>
+<head>
+<!-- Compiled and minified CSS -->
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="scripts/git.js"></script>
+</head>
+<body ng-app="git">
+	<div class="row">
+		<div class="col s3">
+			<div ng-controller="repositories.controller as vm">
+				<a class='dropdown-button btn' href='#' data-activates='repositories'>{{vm.selectedRepository || "--Select a Repository--"}}</a>
+				<ul id='repositories' class='dropdown-content'>
+					<li ng-repeat="repo in vm.repositories"><a ng-click="vm.setRepository(repo);$event.preventDefault()">{{repo}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col s9" ng-controller="file.tree.controller as vm">
+			<ng-include="templates/file-tree.html"></ng-include>
+		</div>
+	</div>
+</body>
+</html>
